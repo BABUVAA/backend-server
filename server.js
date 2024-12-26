@@ -15,6 +15,7 @@ require("dotenv").config(); // Load .env variables
 // Initialize express app
 const app = express();
 const allowedOrigins = [
+  "https://demo-project-virid-six.vercel.app",
   "https://demo-project-a7umtayvs-babuvaas-projects.vercel.app",
   "https://demo-project-git-master-babuvaas-projects.vercel.app",
   "http://localhost:5173",
