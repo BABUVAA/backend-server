@@ -10,13 +10,14 @@ const { CookieJar } = require("tough-cookie");
 const { wrapper } = require("axios-cookiejar-support");
 const fs = require("fs");
 const path = require("path");
+require("dotenv").config(); // Load .env variables
 
 // Initialize express app
 const app = express();
 
 // Enable CORS for your frontend (localhost:5173)
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow only frontend to access the backend
+  origin: process.env.FRONTEND_URL, // Allow only frontend to access the backend
   methods: ["GET", "POST"], // Allowed HTTP methods
   allowedHeaders: ["Content-Type", "Cookie"], // Allowed headers
   credentials: true, // Allow sending credentials (cookies)
