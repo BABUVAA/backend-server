@@ -14,17 +14,28 @@ require("dotenv").config(); // Load .env variables
 
 // Initialize express app
 const app = express();
+const allowedOrigins = [
+  "https://demo-project-a7umtayvs-babuvaas-projects.vercel.app",
+  "https://demo-project-git-master-babuvaas-projects.vercel.app",
+  "http://localhost:5173",
+];
 
-// Enable CORS for your frontend (localhost:5173)
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, // Allow only frontend to access the backend
-  methods: ["GET", "POST"], // Allowed HTTP methods
-  allowedHeaders: ["Content-Type", "Cookie"], // Allowed headers
-  credentials: true, // Allow sending credentials (cookies)
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow request
+    } else {
+      callback(new Error("Not allowed by CORS")); // Block request
+    }
+  },
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Cookie"],
+  credentials: true,
 };
 
+app.use(cors(corsOptions));
+
 app.use(express.json());
-app.use(cors(corsOptions)); // Use CORS with the specified options
 app.use(cookieParser()); // Middleware to parse cookies
 // Middleware to parse URL-encoded data
 app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
