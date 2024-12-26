@@ -425,6 +425,16 @@ app.get("/generateAllData", async (req, res) => {
     });
   }
 });
+
+app.get("/logout", async (req, res) => {
+  console.log("logout");
+  try {
+    const url =
+      "https://uat-api.mayfaironlinecasino.co.ke/WeaverBO/com/stpl/pms/action/bo/lm/bo_lm_logout.action";
+    const response = await client.get(url);
+    res.status(response.status).json({ logout: "logout" });
+  } catch (error) {}
+});
 // Start the server on port 5000 (or any available port)
 const PORT = 5000;
 app.listen(PORT, () => {
