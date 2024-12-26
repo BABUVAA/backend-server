@@ -34,6 +34,7 @@ const client = wrapper(axios.create({ jar })); // Use the wrapper to create an A
 
 // Your existing login route
 app.post("/login", async (req, res) => {
+  jar.removeAllCookiesSync();
   console.log("login");
   try {
     // Step 1: Load the home page and extract loginToken and JSESSIONID
@@ -432,6 +433,7 @@ app.get("/logout", async (req, res) => {
     const url =
       "https://uat-api.mayfaironlinecasino.co.ke/WeaverBO/com/stpl/pms/action/bo/lm/bo_lm_logout.action";
     const response = await client.get(url);
+    jar.removeAllCookiesSync();
     res.status(response.status).json({ logout: "logout" });
   } catch (error) {}
 });
