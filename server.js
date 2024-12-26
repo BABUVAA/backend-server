@@ -15,7 +15,7 @@ require("dotenv").config(); // Load .env variables
 // Initialize express app
 const app = express();
 const allowedOrigins = [
-  "https://game-central-pi-rouge.vercel.app/",
+  "https://game-central-pi-rouge.vercel.app",
   "http://localhost:5173",
 ];
 
