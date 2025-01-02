@@ -17,6 +17,7 @@ const app = express();
 const allowedOrigins = [
   "https://game-central-pi-rouge.vercel.app",
   "http://localhost:5173",
+  "http://172.31.35.134:5173",
 ];
 
 const corsOptions = {
